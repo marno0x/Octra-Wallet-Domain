@@ -108,7 +108,7 @@ export function GenerateWallet({ onWalletGenerated }: GenerateWalletProps) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 min-h-0">
       <Alert className="border-green-200 bg-green-50 dark:bg-green-950">
         <div className="flex items-start space-x-3">
           <CheckCircle className="h-4 w-4 mt-0.5 flex-shrink-0 text-green-600" />
@@ -137,9 +137,9 @@ export function GenerateWallet({ onWalletGenerated }: GenerateWalletProps) {
 
       {/* Mnemonic */}
       {generatedWallet.mnemonic && (
-        <div className="space-y-2">
+        <div className="space-y-2 flex-shrink-0">
           <label className="text-sm font-medium">Mnemonic Phrase</label>
-          <div className="p-4 bg-muted rounded-md">
+          <div className="p-3 bg-muted rounded-md">
             <div className="grid grid-cols-3 gap-3">
               {generatedWallet.mnemonic.split(' ').map((word, index) => (
                 <div key={index} className="flex items-center space-x-2">
@@ -164,7 +164,7 @@ export function GenerateWallet({ onWalletGenerated }: GenerateWalletProps) {
       )}
 
       {/* Private Key */}
-      <div className="space-y-2">
+      <div className="space-y-2 flex-shrink-0">
         <label className="text-sm font-medium">Private Key (Base64)</label>
         <div className="flex items-center space-x-2">
           <div className="flex-1 p-3 bg-muted rounded-md font-mono text-sm break-all">
@@ -183,7 +183,7 @@ export function GenerateWallet({ onWalletGenerated }: GenerateWalletProps) {
       <Separator />
 
       {/* Backup Confirmation */}
-      <div className="space-y-4">
+      <div className="space-y-4 flex-shrink-0 mt-6">
         <Alert>
           <div className="flex items-start space-x-3">
             <CheckCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
@@ -200,14 +200,14 @@ export function GenerateWallet({ onWalletGenerated }: GenerateWalletProps) {
             id="backup-confirm"
             checked={hasBackedUp}
             onChange={(e) => setHasBackedUp(e.target.checked)}
-            className="rounded"
+            className="rounded flex-shrink-0"
           />
           <label htmlFor="backup-confirm" className="text-sm">
             I have securely backed up my wallet information
           </label>
         </div>
 
-        <div className="flex space-x-3">
+        <div className="flex space-x-3 pt-2">
           <Button 
             variant="outline"
             onClick={() => setGeneratedWallet(null)}

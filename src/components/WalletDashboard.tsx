@@ -379,8 +379,8 @@ export function WalletDashboard({
                   <DialogHeader>
                     <DialogTitle>Add New Wallet</DialogTitle>
                   </DialogHeader>
-                  <ScrollArea className="flex-1 max-h-[70vh]">
-                    <div className="pr-4">
+                  <ScrollArea className="flex-1 max-h-[70vh] overflow-y-auto">
+                    <div className="pr-4 pb-4">
                     <Tabs value={addWalletTab} onValueChange={setAddWalletTab} className="w-full h-full flex flex-col">
                     <TabsList className="grid w-full grid-cols-2">
                       <TabsTrigger value="import" className="flex items-center gap-2">
@@ -393,11 +393,11 @@ export function WalletDashboard({
                       </TabsTrigger>
                     </TabsList>
                     
-                    <TabsContent value="import" className="mt-4">
+                    <TabsContent value="import" className="mt-4 flex-1">
                       <ImportWallet onWalletImported={handleImportSuccess} />
                     </TabsContent>
                     
-                    <TabsContent value="generate" className="mt-4">
+                    <TabsContent value="generate" className="mt-4 flex-1">
                       <GenerateWallet onWalletGenerated={handleGenerateSuccess} />
                     </TabsContent>
                   </Tabs>
