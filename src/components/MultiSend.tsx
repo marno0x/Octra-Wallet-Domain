@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Separator } from '@/components/ui/separator';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
 import { Users, Plus, Trash2, AlertTriangle, Wallet as WalletIcon, CheckCircle, ExternalLink, Copy, MessageSquare } from 'lucide-react';
 import { Wallet } from '../types/wallet';
@@ -290,14 +291,16 @@ export function MultiSend({ wallet, balance, nonce, onBalanceUpdate, onNonceUpda
   const currentBalance = balance || 0;
 
   return (
-    <Card>
+    <Card className="max-h-[85vh] flex flex-col">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Users className="h-5 w-5" />
           Multi Send
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="flex-1 min-h-0">
+        <ScrollArea className="h-full max-h-[70vh]">
+          <div className="space-y-6 pr-4">
         <Alert>
           <div className="flex items-start space-x-3">
             <AlertTriangle className="h-4 w-4 mt-0.5 flex-shrink-0" />
@@ -564,6 +567,20 @@ export function MultiSend({ wallet, balance, nonce, onBalanceUpdate, onNonceUpda
         >
           {isSending ? "Sending..." : `Send to ${recipients.filter(r => (r.resolvedAddress || r.address) && Number(r.amount) > 0).length} Recipients`}
         </Button>
+          </div>
+        </ScrollArea>
+        
+        {/* Fixed button at bottom */}
+        <div className="pt-4 border-t mt-4">
+          <Button 
+            onClick={handleSendMultiple}
+            disabled={isSending || !validateRecipients() || totalCost > currentBalance || recipients.some(r => r.message && r.message.length > 1024)}
+            className="w-full text-sm sm:text-base"
+            size="lg"
+          >
+            {isSending ? "Sending..." : `Send to ${recipients.filter(r => (r.resolvedAddress || r.address) && Number(r.amount) > 0).length} Recipients`}
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );

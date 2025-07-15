@@ -379,8 +379,7 @@ export function WalletDashboard({
                   <DialogHeader>
                     <DialogTitle>Add New Wallet</DialogTitle>
                   </DialogHeader>
-                  <ScrollArea className="flex-1 max-h-[70vh] overflow-y-auto">
-                    <div className="pr-4 pb-4">
+                  <div className="flex-1 min-h-0">
                     <Tabs value={addWalletTab} onValueChange={setAddWalletTab} className="w-full h-full flex flex-col">
                     <TabsList className="grid w-full grid-cols-2">
                       <TabsTrigger value="import" className="flex items-center gap-2">
@@ -393,24 +392,37 @@ export function WalletDashboard({
                       </TabsTrigger>
                     </TabsList>
                     
-                    <TabsContent value="import" className="mt-4 flex-1">
-                      <ImportWallet onWalletImported={handleImportSuccess} />
+                    <TabsContent value="import" className="mt-4 flex-1 min-h-0">
+                      <ScrollArea className="h-full max-h-[60vh]">
+                        <div className="pr-4 pb-4">
+                          <ImportWallet onWalletImported={handleImportSuccess} />
+                        </div>
+                      </ScrollArea>
                     </TabsContent>
                     
-                    <TabsContent value="generate" className="mt-4 flex-1">
-                      <GenerateWallet onWalletGenerated={handleGenerateSuccess} />
+                    <TabsContent value="generate" className="mt-4 flex-1 min-h-0">
+                      <ScrollArea className="h-full max-h-[60vh]">
+                        <div className="pr-4 pb-4">
+                          <GenerateWallet onWalletGenerated={handleGenerateSuccess} />
+                        </div>
+                      </ScrollArea>
                     </TabsContent>
                   </Tabs>
-                    </div>
-                  </ScrollArea>
+                  </div>
                 </DialogContent>
               </Dialog>
               <Dialog open={showRPCManager} onOpenChange={setShowRPCManager}>
-                <DialogContent className="sm:max-w-2xl max-h-[80vh] overflow-y-auto">
+                <DialogContent className="sm:max-w-2xl max-h-[80vh] flex flex-col">
                   <DialogHeader>
                     <DialogTitle>RPC Provider Management</DialogTitle>
                   </DialogHeader>
-                  <RPCProviderManager onClose={() => setShowRPCManager(false)} />
+                  <div className="flex-1 min-h-0">
+                    <ScrollArea className="h-full max-h-[65vh]">
+                      <div className="pr-4">
+                        <RPCProviderManager onClose={() => setShowRPCManager(false)} />
+                      </div>
+                    </ScrollArea>
+                  </div>
                 </DialogContent>
               </Dialog>
               <Button

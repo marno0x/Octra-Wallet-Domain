@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { Globe, AlertTriangle, CheckCircle, ExternalLink, Copy, Loader2, Search } from 'lucide-react';
 import { Wallet } from '../types/wallet';
 import { registerDomain, lookupDomain, lookupAddress, isValidDomainFormat, getAddressDomains } from '../utils/domainApi';
@@ -268,7 +269,8 @@ export function RegisterDomain({ wallet, onTransactionSuccess }: RegisterDomainP
   }
 
   return (
-    <div className="space-y-6">
+    <ScrollArea className="max-h-[80vh]">
+      <div className="space-y-6 pr-4">
       {/* Registered Domains List */}
       <Card>
         <CardHeader>
@@ -581,5 +583,6 @@ export function RegisterDomain({ wallet, onTransactionSuccess }: RegisterDomainP
         </CardContent>
       </Card>
     </div>
+    </ScrollArea>
   );
 }

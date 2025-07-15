@@ -108,7 +108,7 @@ export function ImportWallet({ onWalletImported }: ImportWalletProps) {
   };
 
   return (
-    <div className="space-y-4 min-h-0">
+    <div className="space-y-4">
       <Alert>
         <div className="flex items-start space-x-3">
           <AlertTriangle className="h-4 w-4 mt-0.5 flex-shrink-0" />
@@ -196,6 +196,9 @@ export function ImportWallet({ onWalletImported }: ImportWalletProps) {
           </Button>
         </TabsContent>
       </Tabs>
+      
+      {/* Add some bottom padding to ensure scroll works properly */}
+      <div className="h-4"></div>
     </div>
   );
 }

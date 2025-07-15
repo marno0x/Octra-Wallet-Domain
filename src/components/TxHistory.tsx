@@ -231,7 +231,8 @@ export function TxHistory({ wallet, transactions, onTransactionsUpdate, isLoadin
             </AlertDescription>
           </Alert>
         ) : (
-          <div className="space-y-4">
+          <ScrollArea className="max-h-[60vh]">
+            <div className="space-y-4 pr-4">
             <div className="text-sm text-muted-foreground">
               Recent {transactions.length} transactions
               {pendingCount > 0 && ` (${pendingCount} pending)`}
@@ -555,7 +556,8 @@ export function TxHistory({ wallet, transactions, onTransactionsUpdate, isLoadin
                 {index < transactions.length - 1 && <Separator className="mt-4" />}
               </div>
             ))}
-          </div>
+            </div>
+          </ScrollArea>
         )}
       </CardContent>
     </Card>

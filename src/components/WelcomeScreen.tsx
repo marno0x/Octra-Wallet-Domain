@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { GenerateWallet } from './GenerateWallet';
 import { ImportWallet } from './ImportWallet';
@@ -76,7 +77,7 @@ export function WelcomeScreen({ onWalletCreated }: WelcomeScreenProps) {
         </div>
 
         {/* Main Card */}
-        <Card className="shadow-2xl border-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
+        <Card className="shadow-2xl border-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm max-h-[80vh] flex flex-col">
           <CardHeader className="text-center pb-4">
             <CardTitle className="text-2xl">
               {hasExistingWallets() ? 'Add Another Wallet' : 'Get Started'}
@@ -88,7 +89,7 @@ export function WelcomeScreen({ onWalletCreated }: WelcomeScreenProps) {
               }
             </p>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex-1 min-h-0">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-6">
                 <TabsTrigger value="generate" className="flex items-center gap-2">
@@ -101,24 +102,32 @@ export function WelcomeScreen({ onWalletCreated }: WelcomeScreenProps) {
                 </TabsTrigger>
               </TabsList>
 
-              <TabsContent value="generate" className="space-y-4">
-                <div className="text-center mb-4">
-                  <h3 className="text-lg font-semibold mb-2">Create New Wallet</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Generate a brand new wallet with a secure mnemonic phrase
-                  </p>
-                </div>
-                <GenerateWallet onWalletGenerated={handleWalletGenerated} />
+              <TabsContent value="generate" className="flex-1 min-h-0">
+                <ScrollArea className="h-full max-h-[50vh]">
+                  <div className="space-y-4 pr-4">
+                    <div className="text-center mb-4">
+                      <h3 className="text-lg font-semibold mb-2">Create New Wallet</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Generate a brand new wallet with a secure mnemonic phrase
+                      </p>
+                    </div>
+                    <GenerateWallet onWalletGenerated={handleWalletGenerated} />
+                  </div>
+                </ScrollArea>
               </TabsContent>
 
-              <TabsContent value="import" className="space-y-4">
-                <div className="text-center mb-4">
-                  <h3 className="text-lg font-semibold mb-2">Import Existing Wallet</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Restore your wallet using a private key or mnemonic phrase
-                  </p>
-                </div>
-                <ImportWallet onWalletImported={handleWalletGenerated} />
+              <TabsContent value="import" className="flex-1 min-h-0">
+                <ScrollArea className="h-full max-h-[50vh]">
+                  <div className="space-y-4 pr-4">
+                    <div className="text-center mb-4">
+                      <h3 className="text-lg font-semibold mb-2">Import Existing Wallet</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Restore your wallet using a private key or mnemonic phrase
+                      </p>
+                    </div>
+                    <ImportWallet onWalletImported={handleWalletGenerated} />
+                  </div>
+                </ScrollArea>
               </TabsContent>
             </Tabs>
           </CardContent>

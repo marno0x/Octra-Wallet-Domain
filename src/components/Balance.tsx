@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { Copy, RefreshCw, Wallet, Eye, EyeOff, Lock, Unlock, ArrowUpDown } from 'lucide-react';
 import { Wallet as WalletType } from '../types/wallet';
 import { fetchBalance, fetchEncryptedBalance, encryptBalance, decryptBalance, getPendingPrivateTransfers } from '../utils/api';
@@ -107,7 +108,8 @@ export function Balance({ wallet, balance, onBalanceUpdate, isLoading = false }:
   }
 
   return (
-    <div className="space-y-6">
+    <ScrollArea className="max-h-[80vh]">
+      <div className="space-y-6 pr-4">
       {/* Balance Overview */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
@@ -334,5 +336,6 @@ export function Balance({ wallet, balance, onBalanceUpdate, isLoading = false }:
         onSuccess={handleDecryptSuccess}
       />
     </div>
+    </ScrollArea>
   );
 }

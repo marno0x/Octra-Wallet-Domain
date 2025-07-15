@@ -269,7 +269,8 @@ export function ClaimTransfers({ wallet, onTransactionSuccess }: ClaimTransfersP
             </div>
           </Alert>
         ) : (
-          <div className="space-y-4">
+          <ScrollArea className="max-h-[60vh]">
+            <div className="space-y-4 pr-4">
             <div className="text-sm text-muted-foreground">
               Found {transfers.length} claimable transfer{transfers.length !== 1 ? 's' : ''}
             </div>
@@ -325,6 +326,7 @@ export function ClaimTransfers({ wallet, onTransactionSuccess }: ClaimTransfersP
               </div>
             ))}
           </div>
+          </ScrollArea>
         )}
       </CardContent>
     </Card>
